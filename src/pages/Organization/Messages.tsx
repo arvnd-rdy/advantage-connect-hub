@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Search, Send, File, Clock, CheckCircle } from 'lucide-react';
+import { Search, Send, Clock, CheckCircle } from 'lucide-react';
 
 const OrganizationMessages = () => {
   // Mock data for messages
@@ -15,28 +15,37 @@ const OrganizationMessages = () => {
     {
       id: '1',
       name: 'Alex Johnson',
-      title: 'Strategy Consultant',
       avatar: '',
-      lastMessage: 'I'd be interested in discussing your project needs further. When would be a good time to talk?',
-      timestamp: '11:45 AM',
+      title: 'Digital Transformation Consultant',
+      lastMessage: "That sounds like a project that aligns well with my expertise. I've worked on similar transformations in the tech sector.",
+      timestamp: '10:30 AM',
       unread: true,
     },
     {
       id: '2',
       name: 'Sarah Williams',
-      title: 'Digital Marketing Specialist',
       avatar: '',
-      lastMessage: 'Thank you for considering my application. I've attached my portfolio for your review.',
+      title: 'UX/UI Design Specialist',
+      lastMessage: "I would be interested in discussing your redesign project further. My portfolio includes several similar cases.",
       timestamp: 'Yesterday',
       unread: false,
     },
     {
       id: '3',
       name: 'Michael Chen',
-      title: 'IT Security Consultant',
       avatar: '',
-      lastMessage: 'I have extensive experience with similar projects in your industry.',
+      title: 'Data Science Consultant',
+      lastMessage: "Thank you for considering my application. I have extensive experience in machine learning and data visualization.",
       timestamp: 'Mar 15',
+      unread: false,
+    },
+    {
+      id: '4',
+      name: 'Emily Rodriguez',
+      avatar: '',
+      title: 'Marketing Strategy Expert',
+      lastMessage: "I've helped companies in your industry increase their digital presence by an average of 45%.",
+      timestamp: 'Mar 12',
       unread: false,
     },
   ];
@@ -44,43 +53,36 @@ const OrganizationMessages = () => {
   const activeConversation = {
     id: '1',
     name: 'Alex Johnson',
-    title: 'Strategy Consultant',
     avatar: '',
+    title: 'Digital Transformation Consultant',
     messages: [
       {
         id: '1',
         sender: 'me',
-        content: 'Hi Alex, we're looking for a strategy consultant for our upcoming market expansion project. Would you be available for a discussion?',
+        content: "Hi Alex, we came across your profile and are interested in your consulting services for our upcoming digital transformation project.",
         timestamp: 'Mar 16, 9:30 AM',
         read: true,
       },
       {
         id: '2',
         sender: 'them',
-        content: 'Hello! Thank you for reaching out. Yes, I'd be very interested in discussing your market expansion project. Could you provide more details about the scope and timeline?',
+        content: "Hello! Thank you for reaching out. I'd be happy to discuss your digital transformation project. Could you provide more details about your needs and timeline?",
         timestamp: 'Mar 16, 10:15 AM',
         read: true,
       },
       {
         id: '3',
         sender: 'me',
-        content: 'We're looking to expand into the European market in Q3 this year. The project would involve market research, strategic recommendations, and implementation planning over approximately 3 months.',
+        content: "Of course. We're looking to modernize our customer management systems and integrate with our existing ERP. The project timeline is approximately 6 months, starting next quarter.",
         timestamp: 'Mar 16, 10:25 AM',
         read: true,
       },
       {
         id: '4',
         sender: 'them',
-        content: 'That sounds like a great opportunity. I have experience with similar expansion projects in Europe, particularly in the UK, Germany, and France. Would you like to schedule a call to discuss specifics?',
-        timestamp: 'Mar 16, 10:45 AM',
+        content: "That sounds like a project that aligns well with my expertise. I've worked on similar transformations in the tech sector. Would you be available for a call this week to discuss further?",
+        timestamp: 'Today, 10:30 AM',
         read: true,
-      },
-      {
-        id: '5',
-        sender: 'them',
-        content: 'I'd be interested in discussing your project needs further. When would be a good time to talk?',
-        timestamp: 'Today, 11:45 AM',
-        read: false,
       },
     ]
   };
@@ -100,7 +102,7 @@ const OrganizationMessages = () => {
             <div className="mb-6">
               <h2 className="text-2xl font-bold mb-2">Messages</h2>
               <p className="text-gray-600">
-                Communicate with consultants about potential opportunities.
+                Communicate with consultants about potential opportunities and projects.
               </p>
             </div>
             
@@ -110,7 +112,7 @@ const OrganizationMessages = () => {
                   <div className="relative">
                     <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
                     <Input 
-                      placeholder="Search conversations..." 
+                      placeholder="Search messages..." 
                       className="pl-9"
                     />
                   </div>
@@ -137,7 +139,7 @@ const OrganizationMessages = () => {
                             {conversation.timestamp}
                           </span>
                         </div>
-                        <p className="text-xs text-gray-500">{conversation.title}</p>
+                        <p className="text-xs text-gray-500 -mt-0.5">{conversation.title}</p>
                         <p className="text-sm text-gray-600 truncate mt-1">
                           {conversation.lastMessage}
                         </p>
@@ -160,13 +162,7 @@ const OrganizationMessages = () => {
                   </Avatar>
                   <div>
                     <h3 className="font-medium">{activeConversation.name}</h3>
-                    <p className="text-sm text-gray-500">{activeConversation.title}</p>
-                  </div>
-                  <div className="ml-auto">
-                    <Button variant="outline" size="sm" className="gap-2">
-                      <File className="h-4 w-4" />
-                      View Profile
-                    </Button>
+                    <p className="text-xs text-gray-500">{activeConversation.title}</p>
                   </div>
                 </div>
                 
