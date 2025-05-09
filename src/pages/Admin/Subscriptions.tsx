@@ -151,7 +151,7 @@ const AdminSubscriptions = () => {
                         <TableCell>{sub.plan}</TableCell>
                         <TableCell>
                           <Badge variant={
-                            sub.status === 'active' ? 'success' :
+                            sub.status === 'active' ? 'default' :
                             sub.status === 'canceled' ? 'destructive' : 'outline'
                           }>
                             <span className="capitalize">
