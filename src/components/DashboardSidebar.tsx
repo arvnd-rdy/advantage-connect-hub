@@ -131,7 +131,7 @@ const DashboardSidebar = ({ role }: SidebarProps) => {
                 const isActive = location.pathname === item.url;
                 return (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild active={isActive}>
+                    <SidebarMenuButton asChild isActive={isActive}>
                       <Link to={item.url}>
                         <item.icon size={20} />
                         <span>{item.title}</span>
