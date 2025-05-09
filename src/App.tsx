@@ -15,13 +15,30 @@ import NotFound from "@/pages/NotFound";
 import ConsultantDashboard from "@/pages/Consultant/Dashboard";
 import ConsultantProfile from "@/pages/Consultant/Profile";
 import ConsultantDocuments from "@/pages/Consultant/Documents";
+import ConsultantAvailability from "@/pages/Consultant/Availability";
+import ConsultantPreferences from "@/pages/Consultant/Preferences";
+import ConsultantMessages from "@/pages/Consultant/Messages";
+import ConsultantOrganizations from "@/pages/Consultant/Organizations";
 
 // Organization pages
 import OrganizationDashboard from "@/pages/Organization/Dashboard";
+import OrganizationProfile from "@/pages/Organization/Profile";
 import ConsultantSearch from "@/pages/Organization/Search";
+import OrganizationPreferences from "@/pages/Organization/Preferences";
+import OrganizationMessages from "@/pages/Organization/Messages";
+import OrganizationConsultants from "@/pages/Organization/Consultants";
 
 // Admin pages
 import AdminDashboard from "@/pages/Admin/Dashboard";
+import AdminUsers from "@/pages/Admin/Users";
+import AdminSubscriptions from "@/pages/Admin/Subscriptions";
+import AdminAnalytics from "@/pages/Admin/Analytics";
+import AdminSettings from "@/pages/Admin/Settings";
+
+// Subscription pages
+import SubscriptionPlans from "@/pages/Subscription/Plans";
+import SubscriptionBilling from "@/pages/Subscription/Billing";
+import SubscriptionSuccess from "@/pages/Subscription/Success";
 
 const queryClient = new QueryClient();
 
@@ -41,13 +58,30 @@ const App = () => (
           <Route path="/consultant/dashboard" element={<ConsultantDashboard />} />
           <Route path="/consultant/profile" element={<ConsultantProfile />} />
           <Route path="/consultant/documents" element={<ConsultantDocuments />} />
+          <Route path="/consultant/availability" element={<ConsultantAvailability />} />
+          <Route path="/consultant/preferences" element={<ConsultantPreferences />} />
+          <Route path="/consultant/messages" element={<ConsultantMessages />} />
+          <Route path="/consultant/organizations" element={<ConsultantOrganizations />} />
           
           {/* Organization Routes */}
           <Route path="/organization/dashboard" element={<OrganizationDashboard />} />
+          <Route path="/organization/profile" element={<OrganizationProfile />} />
           <Route path="/organization/search" element={<ConsultantSearch />} />
+          <Route path="/organization/preferences" element={<OrganizationPreferences />} />
+          <Route path="/organization/messages" element={<OrganizationMessages />} />
+          <Route path="/organization/consultants" element={<OrganizationConsultants />} />
           
           {/* Admin Routes */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/subscriptions" element={<AdminSubscriptions />} />
+          <Route path="/admin/analytics" element={<AdminAnalytics />} />
+          <Route path="/admin/settings" element={<AdminSettings />} />
+          
+          {/* Subscription Routes */}
+          <Route path="/subscription/plans" element={<SubscriptionPlans />} />
+          <Route path="/subscription/billing" element={<SubscriptionBilling />} />
+          <Route path="/subscription/success" element={<SubscriptionSuccess />} />
           
           {/* Catch-all route for 404 */}
           <Route path="*" element={<NotFound />} />

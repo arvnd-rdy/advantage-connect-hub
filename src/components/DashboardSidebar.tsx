@@ -21,7 +21,11 @@ import {
   Calendar,
   LogOut,
   Users,
-  BarChart
+  BarChart,
+  MessageSquare,
+  CreditCard,
+  Bell,
+  Heart
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -56,6 +60,16 @@ const DashboardSidebar = ({ role }: SidebarProps) => {
         url: `${baseRoute}/availability`,
       },
       {
+        title: 'Messages',
+        icon: MessageSquare,
+        url: `${baseRoute}/messages`,
+      },
+      {
+        title: 'Organizations',
+        icon: Building,
+        url: `${baseRoute}/organizations`,
+      },
+      {
         title: 'Preferences',
         icon: Settings,
         url: `${baseRoute}/preferences`,
@@ -78,6 +92,21 @@ const DashboardSidebar = ({ role }: SidebarProps) => {
         url: `${baseRoute}/search`,
       },
       {
+        title: 'Saved Consultants',
+        icon: Heart,
+        url: `${baseRoute}/consultants`,
+      },
+      {
+        title: 'Messages',
+        icon: MessageSquare,
+        url: `${baseRoute}/messages`,
+      },
+      {
+        title: 'Subscription',
+        icon: CreditCard,
+        url: `/subscription/plans`,
+      },
+      {
         title: 'Preferences',
         icon: Settings,
         url: `${baseRoute}/preferences`,
@@ -96,13 +125,18 @@ const DashboardSidebar = ({ role }: SidebarProps) => {
       },
       {
         title: 'Subscriptions',
-        icon: Calendar,
+        icon: CreditCard,
         url: `${baseRoute}/subscriptions`,
       },
       {
         title: 'Analytics',
         icon: BarChart,
         url: `${baseRoute}/analytics`,
+      },
+      {
+        title: 'Notifications',
+        icon: Bell,
+        url: `${baseRoute}/notifications`,
       },
       {
         title: 'Settings',
