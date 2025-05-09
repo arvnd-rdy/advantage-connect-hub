@@ -8,7 +8,7 @@ import ProfileForm from '@/components/ProfileForm';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
-import { useToast } from '@/components/ui/toast';
+import { useToast } from '@/hooks/use-toast';
 
 const OrganizationProfile = () => {
   const { toast } = useToast();
