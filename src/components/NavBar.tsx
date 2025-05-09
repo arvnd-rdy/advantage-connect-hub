@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Menu, User } from 'lucide-react';
+import { Home, Menu, User } from 'lucide-react';
 
 interface NavBarProps {
   isLoggedIn?: boolean;
@@ -18,6 +18,11 @@ interface NavBarProps {
 
 const NavBar = ({ isLoggedIn = false, userRole }: NavBarProps) => {
   const isMobile = useIsMobile();
+  const location = useLocation();
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
 
   return (
     <nav className="bg-white border-b border-gray-200 py-4 px-6 w-full">
@@ -30,16 +35,20 @@ const NavBar = ({ isLoggedIn = false, userRole }: NavBarProps) => {
 
         {!isMobile ? (
           <div className="flex items-center gap-6">
-            <Link to="/about" className="text-gray-600 hover:text-brand-blue transition-colors">
+            <Link to="/" className={`flex items-center gap-1 ${isActive('/') ? 'text-brand-blue' : 'text-gray-600'} hover:text-brand-blue transition-colors`}>
+              <Home size={18} />
+              <span>Home</span>
+            </Link>
+            <Link to="/about" className={`${isActive('/about') ? 'text-brand-blue' : 'text-gray-600'} hover:text-brand-blue transition-colors`}>
               About
             </Link>
-            <Link to="/solutions" className="text-gray-600 hover:text-brand-blue transition-colors">
+            <Link to="/solutions" className={`${isActive('/solutions') ? 'text-brand-blue' : 'text-gray-600'} hover:text-brand-blue transition-colors`}>
               Solutions
             </Link>
-            <Link to="/pricing" className="text-gray-600 hover:text-brand-blue transition-colors">
+            <Link to="/pricing" className={`${isActive('/pricing') ? 'text-brand-blue' : 'text-gray-600'} hover:text-brand-blue transition-colors`}>
               Pricing
             </Link>
-            <Link to="/contact" className="text-gray-600 hover:text-brand-blue transition-colors">
+            <Link to="/contact" className={`${isActive('/contact') ? 'text-brand-blue' : 'text-gray-600'} hover:text-brand-blue transition-colors`}>
               Contact
             </Link>
             
@@ -74,6 +83,12 @@ const NavBar = ({ isLoggedIn = false, userRole }: NavBarProps) => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem asChild>
+                <Link to="/" className="w-full flex items-center gap-1">
+                  <Home size={16} className="mr-1" />
+                  Home
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link to="/about" className="w-full">About</Link>
               </DropdownMenuItem>

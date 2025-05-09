@@ -11,6 +11,12 @@ import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
 import NotFound from "@/pages/NotFound";
 
+// Static pages
+import About from "@/pages/About";
+import Solutions from "@/pages/Solutions";
+import Pricing from "@/pages/Pricing";
+import Contact from "@/pages/Contact";
+
 // Consultant pages
 import ConsultantDashboard from "@/pages/Consultant/Dashboard";
 import ConsultantProfile from "@/pages/Consultant/Profile";
@@ -53,6 +59,12 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          
+          {/* Static Pages */}
+          <Route path="/about" element={<About />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<Contact />} />
           
           {/* Consultant Routes */}
           <Route path="/consultant/dashboard" element={<ConsultantDashboard />} />
