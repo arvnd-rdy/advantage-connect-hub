@@ -25,6 +25,7 @@ import ConsultantAvailability from "@/pages/Consultant/Availability";
 import ConsultantPreferences from "@/pages/Consultant/Preferences";
 import ConsultantMessages from "@/pages/Consultant/Messages";
 import ConsultantOrganizations from "@/pages/Consultant/Organizations";
+import ConsultantGigDetail from "@/pages/Consultant/GigDetail";
 
 // Organization pages
 import OrganizationDashboard from "@/pages/Organization/Dashboard";
@@ -75,6 +76,7 @@ const App = () => (
           <Route path="/consultant/preferences" element={<ConsultantPreferences />} />
           <Route path="/consultant/messages" element={<ConsultantMessages />} />
           <Route path="/consultant/organizations" element={<ConsultantOrganizations />} />
+          <Route path="/consultant/gig/:gigId" element={<ConsultantGigDetail />} />
           
           {/* Organization Routes */}
           <Route path="/organization/dashboard" element={<OrganizationDashboard />} />
