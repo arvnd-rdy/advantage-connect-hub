@@ -30,6 +30,7 @@ import ConsultantOrganizations from "@/pages/Consultant/Organizations";
 import OrganizationDashboard from "@/pages/Organization/Dashboard";
 import OrganizationProfile from "@/pages/Organization/Profile";
 import ConsultantSearch from "@/pages/Organization/Search";
+import ConsultantDetail from "@/pages/Organization/ConsultantDetail";
 import OrganizationPreferences from "@/pages/Organization/Preferences";
 import OrganizationMessages from "@/pages/Organization/Messages";
 import OrganizationConsultants from "@/pages/Organization/Consultants";
