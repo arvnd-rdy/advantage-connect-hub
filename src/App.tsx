@@ -36,6 +36,8 @@ import OrganizationPreferences from "@/pages/Organization/Preferences";
 import OrganizationMessages from "@/pages/Organization/Messages";
 import OrganizationConsultants from "@/pages/Organization/Consultants";
 import PostConsultingRequest from "@/pages/Organization/PostRequest";
+import ManageRequests from "@/pages/Organization/ManageRequests";
+import RequestDetail from "@/pages/Organization/RequestDetail";
 
 // Admin pages
 import AdminDashboard from "@/pages/Admin/Dashboard";
@@ -87,6 +89,8 @@ const App = () => (
           <Route path="/organization/messages" element={<OrganizationMessages />} />
           <Route path="/organization/consultants" element={<OrganizationConsultants />} />
           <Route path="/organization/post-request" element={<PostConsultingRequest />} />
+          <Route path="/organization/manage-requests" element={<ManageRequests />} />
+          <Route path="/organization/request/:id" element={<RequestDetail />} />
           
           {/* Admin Routes */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />

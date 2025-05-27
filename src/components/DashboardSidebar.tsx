@@ -25,7 +25,9 @@ import {
   MessageSquare,
   CreditCard,
   Bell,
-  Heart
+  Heart,
+  FolderOpen,
+  Plus
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -95,6 +97,16 @@ const DashboardSidebar = ({ role }: SidebarProps) => {
         title: 'Saved Consultants',
         icon: Heart,
         url: `${baseRoute}/consultants`,
+      },
+      {
+        title: 'Post Request',
+        icon: Plus,
+        url: `${baseRoute}/post-request`,
+      },
+      {
+        title: 'Manage Requests',
+        icon: FolderOpen,
+        url: `${baseRoute}/manage-requests`,
       },
       {
         title: 'Messages',

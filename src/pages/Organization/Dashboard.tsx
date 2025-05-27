@@ -7,7 +7,7 @@ import DashboardCard from '@/components/DashboardCard';
 import ConsultantCard from '@/components/ConsultantCard';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Search, Clock, Building, Users, Plus } from 'lucide-react';
+import { Search, Clock, Building, Users, Plus, FolderOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const OrganizationDashboard = () => {
@@ -64,12 +64,20 @@ const OrganizationDashboard = () => {
                     Find the perfect consultant for your organization's needs.
                   </p>
                 </div>
-                <Link to="/organization/post-request">
-                  <Button className="bg-blue-600 hover:bg-blue-700">
-                    <Plus className="h-4 w-4 mr-2" />
-                    Post New Request
-                  </Button>
-                </Link>
+                <div className="flex gap-3">
+                  <Link to="/organization/manage-requests">
+                    <Button variant="outline">
+                      <FolderOpen className="h-4 w-4 mr-2" />
+                      Manage Requests
+                    </Button>
+                  </Link>
+                  <Link to="/organization/post-request">
+                    <Button className="bg-blue-600 hover:bg-blue-700">
+                      <Plus className="h-4 w-4 mr-2" />
+                      Post New Request
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
             
