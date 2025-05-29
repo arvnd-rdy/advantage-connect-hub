@@ -42,6 +42,9 @@ const NavBar = ({ isLoggedIn = false, userRole }: NavBarProps) => {
             <Link to="/about" className={`${isActive('/about') ? 'text-brand-blue' : 'text-gray-600'} hover:text-brand-blue transition-colors`}>
               About
             </Link>
+            <Link to="/how-it-works" className={`${isActive('/how-it-works') ? 'text-brand-blue' : 'text-gray-600'} hover:text-brand-blue transition-colors`}>
+              How It Works
+            </Link>
             <Link to="/solutions" className={`${isActive('/solutions') ? 'text-brand-blue' : 'text-gray-600'} hover:text-brand-blue transition-colors`}>
               Solutions
             </Link>
@@ -91,6 +94,9 @@ const NavBar = ({ isLoggedIn = false, userRole }: NavBarProps) => {
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link to="/about" className="w-full">About</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/how-it-works" className="w-full">How It Works</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link to="/solutions" className="w-full">Solutions</Link>

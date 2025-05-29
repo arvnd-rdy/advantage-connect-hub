@@ -10,12 +10,20 @@ import Home from "@/pages/Home";
 import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
 import NotFound from "@/pages/NotFound";
+import ForgotPassword from "@/pages/ForgotPassword";
 
 // Static pages
 import About from "@/pages/About";
 import Solutions from "@/pages/Solutions";
 import Pricing from "@/pages/Pricing";
 import Contact from "@/pages/Contact";
+import HowItWorks from "@/pages/HowItWorks";
+import FAQ from "@/pages/FAQ";
+import Privacy from "@/pages/Privacy";
+import Terms from "@/pages/Terms";
+
+// Account pages
+import AccountSettings from "@/pages/Account/Settings";
 
 // Consultant pages
 import ConsultantDashboard from "@/pages/Consultant/Dashboard";
@@ -64,12 +72,20 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           
           {/* Static Pages */}
           <Route path="/about" element={<About />} />
           <Route path="/solutions" element={<Solutions />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          
+          {/* Account Management */}
+          <Route path="/account/settings" element={<AccountSettings />} />
           
           {/* Consultant Routes */}
           <Route path="/consultant/dashboard" element={<ConsultantDashboard />} />

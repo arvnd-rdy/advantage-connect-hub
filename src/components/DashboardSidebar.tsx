@@ -190,6 +190,22 @@ const DashboardSidebar = ({ role }: SidebarProps) => {
           </SidebarGroupContent>
         </SidebarGroup>
         
+        <SidebarGroup>
+          <SidebarGroupLabel>Account</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={location.pathname === '/account/settings'}>
+                  <Link to="/account/settings">
+                    <Settings size={20} />
+                    <span>Account Settings</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        
         <div className="mt-auto px-4 py-6">
           <Link 
             to="/logout" 
