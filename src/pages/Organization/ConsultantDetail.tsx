@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { SidebarProvider } from '@/components/ui/sidebar';
@@ -193,7 +192,7 @@ const ConsultantDetail = () => {
             userRole="organization"
           />
           
-          <main className="p-6">
+          <main className="p-6 pb-20">
             {/* Breadcrumb */}
             <div className="mb-6">
               <Link to="/organization/search" className="flex items-center text-blue-600 hover:text-blue-800 mb-4">
@@ -204,9 +203,9 @@ const ConsultantDetail = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main Content */}
-              <div className="lg:col-span-2 space-y-6">
+              <div className="lg:col-span-2 space-y-6 relative z-10">
                 {/* Service Header */}
-                <div>
+                <div className="bg-white">
                   <div className="flex items-center gap-3 mb-4">
                     <Avatar className="h-12 w-12">
                       <AvatarImage src={consultant.avatar} />
@@ -251,7 +250,7 @@ const ConsultantDetail = () => {
                     <TabsTrigger value="faq">FAQ</TabsTrigger>
                   </TabsList>
                   
-                  <TabsContent value="overview" className="space-y-6">
+                  <TabsContent value="overview" className="space-y-6 mt-6">
                     <Card>
                       <CardHeader>
                         <CardTitle>About this service</CardTitle>
@@ -275,7 +274,7 @@ const ConsultantDetail = () => {
                     </Card>
                   </TabsContent>
                   
-                  <TabsContent value="reviews" className="space-y-4">
+                  <TabsContent value="reviews" className="space-y-4 mt-6">
                     {consultant.reviews.map((review) => (
                       <Card key={review.id}>
                         <CardContent className="pt-6">
@@ -297,7 +296,7 @@ const ConsultantDetail = () => {
                     ))}
                   </TabsContent>
                   
-                  <TabsContent value="portfolio" className="space-y-4">
+                  <TabsContent value="portfolio" className="space-y-4 mt-6">
                     {consultant.portfolio.map((item) => (
                       <Card key={item.id}>
                         <CardContent className="pt-6">
@@ -313,7 +312,7 @@ const ConsultantDetail = () => {
                     ))}
                   </TabsContent>
                   
-                  <TabsContent value="faq" className="space-y-4">
+                  <TabsContent value="faq" className="space-y-4 mt-6">
                     {consultant.faq.map((item, index) => (
                       <Card key={index}>
                         <CardContent className="pt-6">
@@ -327,9 +326,9 @@ const ConsultantDetail = () => {
               </div>
 
               {/* Sidebar */}
-              <div className="space-y-6">
+              <div className="space-y-6 relative">
                 {/* Package Selection */}
-                <Card className="sticky top-6">
+                <Card className="sticky top-20 z-20 bg-white border shadow-lg">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <CardTitle>Choose a package</CardTitle>
@@ -400,7 +399,7 @@ const ConsultantDetail = () => {
                 </Card>
 
                 {/* Consultant Info */}
-                <Card>
+                <Card className="bg-white border shadow-lg">
                   <CardHeader>
                     <CardTitle className="text-lg">About the consultant</CardTitle>
                   </CardHeader>
