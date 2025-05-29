@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { SidebarProvider } from '@/components/ui/sidebar';
@@ -19,26 +20,28 @@ import {
   ArrowLeft,
   Calendar,
   Award,
-  TrendingUp
+  TrendingUp,
+  Mail,
+  Phone,
+  Globe
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const ConsultantDetail = () => {
   const { id } = useParams();
   const { toast } = useToast();
-  const [selectedPackage, setSelectedPackage] = useState('basic');
 
   // Mock detailed consultant data
   const consultant = {
     id: "1",
     name: "John Mitchell",
     username: "johnmitchell",
-    title: "I will create strategic business plans that drive growth and success",
+    title: "Strategic Business Consultant & Growth Specialist",
     location: "Boston, MA",
     avatar: "",
     rating: 5.0,
     reviewCount: 119,
-    level: "Top Rated",
+    level: "Top Rated Plus",
     memberSince: "Mar 2022",
     lastDelivery: "about 2 hours",
     responseTime: "1 hour",
@@ -50,58 +53,10 @@ const ConsultantDetail = () => {
       { degree: "BS in Economics", school: "MIT", year: "2014" }
     ],
     certifications: ["Certified Management Consultant (CMC)", "Six Sigma Black Belt"],
-    packages: [
-      {
-        name: "Basic",
-        price: "136.67",
-        originalPrice: "160.76",
-        delivery: "4 days",
-        revisions: "1",
-        description: "Strategic business plan with market analysis",
-        features: [
-          "Market research and analysis",
-          "Business model canvas",
-          "Financial projections (1 year)",
-          "Executive summary",
-          "1 revision included"
-        ]
-      },
-      {
-        name: "Standard",
-        price: "273.34",
-        originalPrice: "321.52",
-        delivery: "7 days",
-        revisions: "2",
-        description: "Comprehensive strategy with implementation roadmap",
-        features: [
-          "Everything in Basic",
-          "3-year financial projections",
-          "Go-to-market strategy",
-          "Risk assessment",
-          "Implementation timeline",
-          "2 revisions included",
-          "1-hour strategy call"
-        ]
-      },
-      {
-        name: "Premium",
-        price: "546.68",
-        originalPrice: "643.04",
-        delivery: "10 days",
-        revisions: "Unlimited",
-        description: "Complete strategic transformation package",
-        features: [
-          "Everything in Standard",
-          "5-year strategic roadmap",
-          "Organizational design",
-          "Change management plan",
-          "KPI framework",
-          "Unlimited revisions",
-          "Weekly check-ins (4 weeks)",
-          "Team training session"
-        ]
-      }
-    ],
+    hourlyRate: 150,
+    email: "john.mitchell@example.com",
+    phone: "+1 (555) 123-4567",
+    website: "johnmitchell.consulting",
     reviews: [
       {
         id: 1,
@@ -183,7 +138,7 @@ const ConsultantDetail = () => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full">
+      <div className="min-h-screen flex w-full bg-gray-50">
         <DashboardSidebar role="organization" />
         
         <div className="flex-1">
@@ -192,96 +147,150 @@ const ConsultantDetail = () => {
             userRole="organization"
           />
           
-          <main className="p-6 pb-20">
+          <main className="p-8">
             {/* Breadcrumb */}
-            <div className="mb-6">
-              <Link to="/organization/search" className="flex items-center text-blue-600 hover:text-blue-800 mb-4">
+            <div className="mb-8">
+              <Link to="/organization/search" className="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to search results
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Main Content */}
-              <div className="lg:col-span-2 space-y-6 relative z-10">
-                {/* Service Header */}
-                <div className="bg-white">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Avatar className="h-12 w-12">
-                      <AvatarImage src={consultant.avatar} />
-                      <AvatarFallback className="bg-blue-100 text-blue-600">
-                        {consultant.name.substring(0, 2).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <h3 className="font-bold text-lg">{consultant.name}</h3>
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
-                        <div className="flex items-center gap-1">
-                          {renderStars(Math.floor(consultant.rating))}
-                          <span className="font-medium">{consultant.rating}</span>
-                          <span>({consultant.reviewCount})</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <MapPin className="h-4 w-4" />
-                          {consultant.location}
-                        </div>
+            {/* Hero Section */}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8">
+              <div className="relative">
+                <div className="h-48 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800"></div>
+                <div className="absolute bottom-0 left-0 transform translate-y-1/2 ml-8">
+                  <Avatar className="h-32 w-32 border-4 border-white shadow-lg">
+                    <AvatarImage src={consultant.avatar} />
+                    <AvatarFallback className="bg-blue-100 text-blue-600 text-3xl font-semibold">
+                      {consultant.name.substring(0, 2).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
+              </div>
+              
+              <div className="pt-20 pb-8 px-8">
+                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <h1 className="text-3xl font-bold text-gray-900">{consultant.name}</h1>
+                      <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200">{consultant.level}</Badge>
+                    </div>
+                    <p className="text-xl text-gray-600 mb-4">{consultant.title}</p>
+                    
+                    <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 mb-6">
+                      <div className="flex items-center gap-2">
+                        {renderStars(Math.floor(consultant.rating))}
+                        <span className="font-semibold text-gray-900">{consultant.rating}</span>
+                        <span>({consultant.reviewCount} reviews)</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4" />
+                        {consultant.location}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        Responds in {consultant.responseTime}
                       </div>
                     </div>
-                  </div>
-                  
-                  <h1 className="text-2xl font-bold mb-4">{consultant.title}</h1>
-                  
-                  {/* Service Images */}
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    <div className="col-span-2 h-64 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg"></div>
-                    <div className="space-y-2">
-                      <div className="h-32 bg-gradient-to-br from-green-100 to-blue-100 rounded-lg"></div>
-                      <div className="h-30 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg"></div>
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {consultant.skills.map((skill, index) => (
+                        <Badge key={index} variant="secondary" className="bg-blue-50 text-blue-700 border-blue-200">
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    <div className="text-lg font-semibold text-gray-900 mb-2">
+                      ${consultant.hourlyRate}/hour
                     </div>
                   </div>
+                  
+                  <div className="flex gap-3">
+                    <Button variant="outline" size="lg" onClick={handleSave} className="flex items-center gap-2">
+                      <Heart className="h-4 w-4" />
+                      Save
+                    </Button>
+                    <Button variant="outline" size="lg" className="flex items-center gap-2">
+                      <Share2 className="h-4 w-4" />
+                      Share
+                    </Button>
+                    <Button size="lg" onClick={handleContact} className="flex items-center gap-2">
+                      <MessageSquare className="h-4 w-4" />
+                      Contact Consultant
+                    </Button>
+                  </div>
                 </div>
+              </div>
+            </div>
 
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Main Content */}
+              <div className="lg:col-span-2 space-y-8">
                 {/* Tabs */}
                 <Tabs defaultValue="overview" className="w-full">
-                  <TabsList className="grid w-full grid-cols-4">
-                    <TabsTrigger value="overview">Overview</TabsTrigger>
-                    <TabsTrigger value="reviews">Reviews ({consultant.reviewCount})</TabsTrigger>
-                    <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
-                    <TabsTrigger value="faq">FAQ</TabsTrigger>
+                  <TabsList className="grid w-full grid-cols-4 h-12 p-1 bg-gray-100 rounded-xl">
+                    <TabsTrigger value="overview" className="rounded-lg">Overview</TabsTrigger>
+                    <TabsTrigger value="reviews" className="rounded-lg">Reviews ({consultant.reviewCount})</TabsTrigger>
+                    <TabsTrigger value="portfolio" className="rounded-lg">Portfolio</TabsTrigger>
+                    <TabsTrigger value="faq" className="rounded-lg">FAQ</TabsTrigger>
                   </TabsList>
                   
-                  <TabsContent value="overview" className="space-y-6 mt-6">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>About this service</CardTitle>
+                  <TabsContent value="overview" className="space-y-6 mt-8">
+                    <Card className="border-0 shadow-sm bg-white rounded-xl">
+                      <CardHeader className="pb-4">
+                        <CardTitle className="text-xl">About this consultant</CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-gray-700 leading-relaxed">{consultant.description}</p>
+                        <p className="text-gray-700 leading-relaxed text-lg">{consultant.description}</p>
                       </CardContent>
                     </Card>
 
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Skills & Expertise</CardTitle>
+                    <Card className="border-0 shadow-sm bg-white rounded-xl">
+                      <CardHeader className="pb-4">
+                        <CardTitle className="text-xl">Education & Certifications</CardTitle>
                       </CardHeader>
-                      <CardContent>
-                        <div className="flex flex-wrap gap-2">
-                          {consultant.skills.map((skill, index) => (
-                            <Badge key={index} variant="secondary">{skill}</Badge>
-                          ))}
+                      <CardContent className="space-y-6">
+                        <div>
+                          <h4 className="font-semibold mb-3 text-gray-900">Education</h4>
+                          <div className="space-y-3">
+                            {consultant.education.map((edu, index) => (
+                              <div key={index} className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
+                                <div>
+                                  <p className="font-medium text-gray-900">{edu.degree}</p>
+                                  <p className="text-gray-600">{edu.school}, {edu.year}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-3 text-gray-900">Certifications</h4>
+                          <div className="space-y-2">
+                            {consultant.certifications.map((cert, index) => (
+                              <div key={index} className="flex items-center gap-3">
+                                <Award className="h-5 w-5 text-yellow-500" />
+                                <span className="text-gray-700">{cert}</span>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </CardContent>
                     </Card>
                   </TabsContent>
                   
-                  <TabsContent value="reviews" className="space-y-4 mt-6">
+                  <TabsContent value="reviews" className="space-y-6 mt-8">
                     {consultant.reviews.map((review) => (
-                      <Card key={review.id}>
+                      <Card key={review.id} className="border-0 shadow-sm bg-white rounded-xl">
                         <CardContent className="pt-6">
                           <div className="flex items-start justify-between mb-4">
                             <div>
-                              <div className="flex items-center gap-2 mb-2">
-                                <span className="font-medium">{review.author}</span>
+                              <div className="flex items-center gap-3 mb-2">
+                                <span className="font-semibold text-gray-900">{review.author}</span>
                                 <div className="flex items-center gap-1">
                                   {renderStars(review.rating)}
                                 </div>
@@ -289,22 +298,22 @@ const ConsultantDetail = () => {
                               <p className="text-sm text-gray-500">{review.date}</p>
                             </div>
                           </div>
-                          <p className="text-gray-700 mb-3">{review.comment}</p>
-                          <p className="text-xs text-gray-500">Helpful ({review.helpful})</p>
+                          <p className="text-gray-700 leading-relaxed mb-3">{review.comment}</p>
+                          <p className="text-xs text-gray-500">👍 Helpful ({review.helpful})</p>
                         </CardContent>
                       </Card>
                     ))}
                   </TabsContent>
                   
-                  <TabsContent value="portfolio" className="space-y-4 mt-6">
+                  <TabsContent value="portfolio" className="space-y-6 mt-8">
                     {consultant.portfolio.map((item) => (
-                      <Card key={item.id}>
+                      <Card key={item.id} className="border-0 shadow-sm bg-white rounded-xl overflow-hidden">
                         <CardContent className="pt-6">
-                          <div className="flex gap-4">
-                            <div className="w-24 h-24 bg-gray-200 rounded-lg flex-shrink-0"></div>
-                            <div>
-                              <h4 className="font-medium mb-2">{item.title}</h4>
-                              <p className="text-gray-600 text-sm">{item.description}</p>
+                          <div className="flex gap-6">
+                            <div className="w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex-shrink-0"></div>
+                            <div className="flex-1">
+                              <h4 className="font-semibold text-xl mb-3 text-gray-900">{item.title}</h4>
+                              <p className="text-gray-600 leading-relaxed">{item.description}</p>
                             </div>
                           </div>
                         </CardContent>
@@ -312,12 +321,12 @@ const ConsultantDetail = () => {
                     ))}
                   </TabsContent>
                   
-                  <TabsContent value="faq" className="space-y-4 mt-6">
+                  <TabsContent value="faq" className="space-y-6 mt-8">
                     {consultant.faq.map((item, index) => (
-                      <Card key={index}>
+                      <Card key={index} className="border-0 shadow-sm bg-white rounded-xl">
                         <CardContent className="pt-6">
-                          <h4 className="font-medium mb-2">{item.question}</h4>
-                          <p className="text-gray-600">{item.answer}</p>
+                          <h4 className="font-semibold text-lg mb-3 text-gray-900">{item.question}</h4>
+                          <p className="text-gray-600 leading-relaxed">{item.answer}</p>
                         </CardContent>
                       </Card>
                     ))}
@@ -326,142 +335,68 @@ const ConsultantDetail = () => {
               </div>
 
               {/* Sidebar */}
-              <div className="space-y-6 relative">
-                {/* Package Selection */}
-                <Card className="sticky top-20 z-20 bg-white border shadow-lg">
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <CardTitle>Choose a package</CardTitle>
-                      <div className="flex gap-2">
-                        <Button variant="ghost" size="icon" onClick={handleSave}>
-                          <Heart className="h-4 w-4" />
-                        </Button>
-                        <Button variant="ghost" size="icon">
-                          <Share2 className="h-4 w-4" />
-                        </Button>
+              <div className="space-y-6">
+                {/* Contact Card */}
+                <Card className="border-0 shadow-sm bg-white rounded-xl">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-lg">Contact Information</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <Mail className="h-5 w-5 text-gray-500" />
+                        <div>
+                          <p className="text-sm text-gray-500">Email</p>
+                          <p className="font-medium">{consultant.email}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <Phone className="h-5 w-5 text-gray-500" />
+                        <div>
+                          <p className="text-sm text-gray-500">Phone</p>
+                          <p className="font-medium">{consultant.phone}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <Globe className="h-5 w-5 text-gray-500" />
+                        <div>
+                          <p className="text-sm text-gray-500">Website</p>
+                          <p className="font-medium">{consultant.website}</p>
+                        </div>
                       </div>
                     </div>
-                  </CardHeader>
-                  <CardContent>
-                    <Tabs value={selectedPackage} onValueChange={setSelectedPackage}>
-                      <TabsList className="grid w-full grid-cols-3">
-                        <TabsTrigger value="basic" className="text-xs">Basic</TabsTrigger>
-                        <TabsTrigger value="standard" className="text-xs">Standard</TabsTrigger>
-                        <TabsTrigger value="premium" className="text-xs">Premium</TabsTrigger>
-                      </TabsList>
-                      
-                      {consultant.packages.map((pkg) => (
-                        <TabsContent key={pkg.name.toLowerCase()} value={pkg.name.toLowerCase()}>
-                          <div className="space-y-4">
-                            <div className="text-center">
-                              <div className="flex items-center justify-center gap-2 mb-2">
-                                <span className="text-3xl font-bold">CA${pkg.price}</span>
-                                <span className="text-sm text-gray-500 line-through">CA${pkg.originalPrice}</span>
-                              </div>
-                              <p className="text-sm text-gray-600 mb-4">{pkg.description}</p>
-                            </div>
-                            
-                            <div className="space-y-3">
-                              <div className="flex items-center justify-between text-sm">
-                                <div className="flex items-center gap-1">
-                                  <Clock className="h-4 w-4 text-gray-500" />
-                                  <span>{pkg.delivery} delivery</span>
-                                </div>
-                                <div className="flex items-center gap-1">
-                                  <TrendingUp className="h-4 w-4 text-gray-500" />
-                                  <span>{pkg.revisions} revision{pkg.revisions !== "1" ? "s" : ""}</span>
-                                </div>
-                              </div>
-                              
-                              <div className="space-y-2">
-                                {pkg.features.map((feature, index) => (
-                                  <div key={index} className="flex items-center gap-2 text-sm">
-                                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                                    <span>{feature}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                            
-                            <Button className="w-full" size="lg">
-                              Continue (CA${pkg.price})
-                            </Button>
-                          </div>
-                        </TabsContent>
-                      ))}
-                    </Tabs>
-                    
-                    <Button variant="outline" className="w-full mt-4" onClick={handleContact}>
-                      <MessageSquare className="h-4 w-4 mr-2" />
-                      Contact me
-                    </Button>
                   </CardContent>
                 </Card>
 
-                {/* Consultant Info */}
-                <Card className="bg-white border shadow-lg">
-                  <CardHeader>
-                    <CardTitle className="text-lg">About the consultant</CardTitle>
+                {/* Stats Card */}
+                <Card className="border-0 shadow-sm bg-white rounded-xl">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-lg">Professional Stats</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <Avatar className="h-16 w-16">
-                        <AvatarImage src={consultant.avatar} />
-                        <AvatarFallback className="bg-blue-100 text-blue-600 text-xl">
-                          {consultant.name.substring(0, 2).toUpperCase()}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <h3 className="font-bold">{consultant.name}</h3>
-                        <p className="text-sm text-gray-600">@{consultant.username}</p>
-                        <Badge className="mt-1">{consultant.level}</Badge>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="text-center p-3 bg-blue-50 rounded-lg">
+                        <p className="text-2xl font-bold text-blue-600">{consultant.reviewCount}</p>
+                        <p className="text-sm text-gray-600">Reviews</p>
+                      </div>
+                      <div className="text-center p-3 bg-emerald-50 rounded-lg">
+                        <p className="text-2xl font-bold text-emerald-600">{consultant.rating}</p>
+                        <p className="text-sm text-gray-600">Rating</p>
                       </div>
                     </div>
                     
                     <div className="space-y-3 text-sm">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">From</span>
-                        <span className="font-medium">{consultant.location}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between py-2 border-b border-gray-100">
                         <span className="text-gray-600">Member since</span>
                         <span className="font-medium">{consultant.memberSince}</span>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Avg. response time</span>
+                      <div className="flex items-center justify-between py-2 border-b border-gray-100">
+                        <span className="text-gray-600">Response time</span>
                         <span className="font-medium">{consultant.responseTime}</span>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Last delivery</span>
-                        <span className="font-medium">{consultant.lastDelivery}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between py-2">
                         <span className="text-gray-600">Languages</span>
                         <span className="font-medium">{consultant.languages.join(", ")}</span>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="font-medium mb-2">Education</h4>
-                      <div className="space-y-2">
-                        {consultant.education.map((edu, index) => (
-                          <div key={index} className="text-sm">
-                            <p className="font-medium">{edu.degree}</p>
-                            <p className="text-gray-600">{edu.school}, {edu.year}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="font-medium mb-2">Certifications</h4>
-                      <div className="space-y-1">
-                        {consultant.certifications.map((cert, index) => (
-                          <div key={index} className="flex items-center gap-2 text-sm">
-                            <Award className="h-4 w-4 text-yellow-500" />
-                            <span>{cert}</span>
-                          </div>
-                        ))}
                       </div>
                     </div>
                   </CardContent>
